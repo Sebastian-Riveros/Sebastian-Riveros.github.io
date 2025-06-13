@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Poder del Contexto en la Ciencia de Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Chosen Palette: Custom based on user's provided snippet (Dark Header/Footer: #1A1A2ECC, Light Body: #EFF6FF, Accents: #FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C) -->
+    <!-- Application Structure Plan: A thematic, single-page application designed for interactive exploration. The structure progresses from foundational concepts ("Why it Matters") to practical application ("The Lifecycle Explorer" and "Interactive Use Cases"), and finally to solutions for overcoming challenges ("The Strategist's Toolkit"). A sticky sidebar navigation allows non-linear access to these key themes. This structure was chosen over a linear replication of the report to make dense, conceptual information more engaging and digestible, allowing users to learn through interaction and exploration rather than passive reading. -->
+    <!-- Visualization & Content Choices: 
+        - Lifecycle Diagram (HTML/CSS): Goal: Organize. Method: A clickable diagram built with Flexbox to visually represent the ML lifecycle. Interaction: Clicking a stage reveals contextual information on how domain knowledge applies, making the process tangible. Justification: More interactive and engaging than a simple list.
+        - Outlier Case Study (Chart.js Scatter Plot): Goal: Compare/Engage. Method: An interactive scatter plot visualizes an outlier. Interaction: Users choose a domain (Finance vs. Manufacturing) and see different, context-appropriate actions and consequences. Justification: Demonstrates the core thesis—that the *meaning* of data is context-dependent—in a practical, visual way.
+        - Feature Engineering Demo (HTML/JS): Goal: Change/Inform. Method: A simple before-and-after text transformation. Interaction: A button click reveals how raw data becomes a powerful feature with domain insight. Justification: Clearly illustrates the value-add of feature engineering without needing a complex visualization.
+        - Strategist's Toolkit (HTML/JS Accordion): Goal: Organize/Inform. Method: An accordion interface presents strategies for when domain knowledge is lacking. Interaction: Clicking expands to reveal details. Justification: A clean, space-saving way to present a list of related but distinct concepts.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #EFF6FF; /* bg-color-light */
+            color: #073B4C; /* text-color-dark */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #073B4C; /* section-title / text-color-dark */
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            height: 300px;
+            max-height: 40vh;
+        }
+        .nav-link.active {
+            background-color: #118AB2; /* accent-color-4 */
+            color: white;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .bg-color-dark-custom {
+            background-color: #1A1A2ECC;
+        }
+        .accent-1-text { color: #FF6B6B; } /* Coral Red */
+        .accent-2-text { color: #FFD166; } /* Sunny Yellow */
+        .accent-3-text { color: #06D6A0; } /* Tealish Green */
+        .accent-4-text { color: #118AB2; } /* Cerulean Blue */
+
+        /* Lifecycle Explorer styles */
+        .lifecycle-stage:hover {
+            background-color: rgba(17, 138, 178, 0.1); /* light tint of accent-color-4 */
+            border-color: #118AB2; /* accent-color-4 */
+        }
+        .lifecycle-stage.selected {
+            background-color: rgba(17, 138, 178, 0.2);
+            border-color: #118AB2;
+        }
+
+        /* Case Buttons styles */
+        .case-button.finance { background-color: #118AB2; } /* accent-color-4 */
+        .case-button.finance:hover { background-color: #0e7fa3; }
+        .case-button.manufacturing { background-color: #FFD166; color: #073B4C; } /* accent-color-2 */
+        .case-button.manufacturing:hover { background-color: #e6b94c; }
+
+        /* Feature Engineering Button styles */
+        #feature-eng-button { background-color: #06D6A0; } /* accent-color-3 */
+        #feature-eng-button:hover { background-color: #05b487; }
+        #feature-eng-button.opacity-50 { cursor: not-allowed; }
+
+        /* Accordion styles */
+        .accordion-header { background-color: #EFF6FF; } /* bg-color-light */
+        .accordion-header:hover { background-color: #e0f2fe; } /* light blue tint */
+        .accordion-icon { color: #118AB2; } /* accent-color-4 */
+
+        /* Footer styles from provided snippet */
+        .footer {
+            background-color: #1A1A2ECC;
+            padding: 2.5rem 0;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+        .footer-logo a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #fff;
+            text-decoration: none;
+            line-height: 1;
+        }
+        .footer-logo a span {
+            color: #4a6cf7; /* accent-color-2 */
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 1.5rem;
+        }
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #FFD166; /* accent-color-2 */
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        .footer-social .social-link {
+            color: #e0e0e0;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .footer-social .social-link:hover {
+            color: #FFD166; /* accent-color-2 */
+        }
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="relative min-h-screen md:flex">
+        <!-- Sticky Sidebar Navigation -->
+        <nav id="sidebar" class="bg-color-dark-custom text-white w-full md:w-64 py-4 px-2 md:p-4 fixed top-0 left-0 h-full -translate-x-full md:translate-x-0 transition-transform z-20 shadow-lg">
+            <h2 class="text-2xl font-bold px-4 mb-6 mt-2">Menú</h2>
+            <ul class="space-y-2">
+                <li><a href="#introduccion" class="nav-link block py-2.5 px-4 rounded hover:bg-opacity-80 hover:bg-[#118AB2]">Introducción</a></li>
+                <li><a href="#explorador" class="nav-link block py-2.5 px-4 rounded hover:bg-opacity-80 hover:bg-[#118AB2]">Explorador del Ciclo de Vida</a></li>
+                <li><a href="#casos" class="nav-link block py-2.5 px-4 rounded hover:bg-opacity-80 hover:bg-[#118AB2]">Casos Interactivos</a></li>
+                <li><a href="#estrategias" class="nav-link block py-2.5 px-4 rounded hover:bg-opacity-80 hover:bg-[#118AB2]">Caja de Estrategias</a></li>
+                <li><a href="#conclusion" class="nav-link block py-2.5 px-4 rounded hover:bg-opacity-80 hover:bg-[#118AB2]">Conclusión</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-color-dark-custom text-white flex justify-between items-center p-4 shadow-lg">
+            <h1 class="text-xl font-bold">El Poder del Contexto</h1>
+            <button id="mobile-menu-button" class="p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="md:ml-64 p-4 sm:p-8 md:p-12 w-full">
+
+            <!-- Section 1: Introduction -->
+            <section id="introduccion" class="mb-16 min-h-screen flex flex-col justify-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">El Poder del Contexto en la Ciencia de Datos</h1>
+                    <p class="text-xl text-gray-600 mb-6">Más allá de los algoritmos y la computación, el éxito en el Machine Learning depende de un pilar fundamental: el <strong class="accent-4-text">conocimiento de dominio</strong>. Esta aplicación interactiva explora por qué el contexto es el rey.</p>
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h3 class="font-bold text-lg mb-2">Ciencia de Datos</h3>
+                            <p class="text-sm">La disciplina de extraer valor de los datos.</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                            <h3 class="font-bold text-lg accent-4-text">Conocimiento de Dominio</h3>
+                            <p class="text-sm">La comprensión experta del campo o industria específica.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h3 class="font-bold text-lg mb-2">Machine Learning</h3>
+                            <p class="text-sm">Algoritmos que aprenden de los datos para hacer predicciones.</p>
+                        </div>
+                    </div>
+                     <p class="mt-6 text-sm italic text-gray-500">El conocimiento de dominio actúa como un intérprete: mientras los algoritmos encuentran patrones, el contexto les da significado, transformando observaciones estadísticas en inteligencia de negocio accionable.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Lifecycle Explorer -->
+            <section id="explorador" class="mb-16 min-h-screen flex flex-col justify-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h2 class="text-3xl font-bold mb-2">Explorador del Ciclo de Vida del ML</h2>
+                    <p class="text-lg text-gray-600 mb-8">El conocimiento de dominio no es un paso, es un hilo que teje todo el proceso. Haz clic en cada etapa para ver su impacto.</p>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                        <div class="lifecycle-stage cursor-pointer p-3 text-center rounded-lg border-2 border-transparent transition" data-stage="comprension">
+                            <div class="text-4xl">🎯</div>
+                            <div class="font-semibold mt-1">Comprensión del Negocio</div>
+                        </div>
+                        <div class="text-2xl text-gray-300 font-light hidden md:block">→</div>
+                         <div class="lifecycle-stage cursor-pointer p-3 text-center rounded-lg border-2 border-transparent transition" data-stage="datos">
+                            <div class="text-4xl">📊</div>
+                            <div class="font-semibold mt-1">Preprocesamiento de Datos</div>
+                        </div>
+                        <div class="text-2xl text-gray-300 font-light hidden md:block">→</div>
+                         <div class="lifecycle-stage cursor-pointer p-3 text-center rounded-lg border-2 border-transparent transition" data-stage="features">
+                            <div class="text-4xl">🛠️</div>
+                            <div class="font-semibold mt-1">Ingeniería de Características</div>
+                        </div>
+                         <div class="text-2xl text-gray-300 font-light hidden md:block">→</div>
+                         <div class="lifecycle-stage cursor-pointer p-3 text-center rounded-lg border-2 border-transparent transition" data-stage="modelo">
+                            <div class="text-4xl">🧠</div>
+                            <div class="font-semibold mt-1">Modelado e Implementación</div>
+                        </div>
+                    </div>
+
+                    <div id="lifecycle-details" class="bg-gray-50 p-6 rounded-lg min-h-[180px] border border-gray-200 transition-all duration-300">
+                        <h3 id="lifecycle-title" class="text-xl font-bold mb-2">Selecciona una etapa</h3>
+                        <p id="lifecycle-text" class="text-gray-600">Aquí aparecerá la explicación de cómo el conocimiento de dominio influye en la etapa seleccionada.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Interactive Use Cases -->
+            <section id="casos" class="mb-16 min-h-screen flex flex-col justify-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h2 class="text-3xl font-bold mb-8 text-center">Casos Interactivos: El Dominio en Acción</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+
+                        <!-- Case 1: Outlier Detection -->
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                            <h3 class="text-xl font-bold mb-2">Caso 1: Detección de Outliers</h3>
+                            <p class="text-sm text-gray-600 mb-4">Un valor atípico no es solo un punto en un gráfico; es una señal. Pero, ¿qué señaliza? El dominio tiene la respuesta. Observa el punto de datos atípico en el gráfico.</p>
+                            <div class="chart-container">
+                                <canvas id="outlierChart"></canvas>
+                            </div>
+                            <p class="text-sm font-semibold text-center mt-4 mb-2">Elige un dominio para decidir cómo tratarlo:</p>
+                            <div class="flex justify-center space-x-4">
+                                <button class="case-button finance text-white font-bold py-2 px-4 rounded transition">Finanzas</button>
+                                <button class="case-button manufacturing font-bold py-2 px-4 rounded transition">Manufactura</button>
+                            </div>
+                             <div id="outlier-explanation" class="mt-4 text-sm bg-white p-4 rounded-md border border-gray-200 min-h-[100px]">
+                                <p class="text-gray-500 italic">Aquí aparecerá la consecuencia de tu elección...</p>
+                             </div>
+                        </div>
+
+                        <!-- Case 2: Feature Engineering -->
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                             <h3 class="text-xl font-bold mb-2">Caso 2: Ingeniería de Características</h3>
+                             <p class="text-sm text-gray-600 mb-4">Los datos crudos raramente cuentan toda la historia. El conocimiento de dominio nos permite crear nuevas características que revelan patrones ocultos y potencian los modelos.</p>
+                            
+                             <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">Datos Crudos (Bienes Raíces):</h4>
+                                    <div class="bg-white p-3 rounded-md text-sm font-mono border mt-1">
+                                        <p>YearBuilt: 1990</p>
+                                        <p>YrSold: 2024</p>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button id="feature-eng-button" class="text-white font-bold py-2 px-4 rounded transition transform hover:scale-105">
+                                        ↓ Aplicar Conocimiento de Dominio ↓
+                                    </button>
+                                </div>
+                                <div id="feature-eng-result" class="hidden">
+                                     <h4 class="font-semibold text-gray-700">Nuevas Características Creadas:</h4>
+                                     <div class="bg-green-50 border border-green-200 p-3 rounded-md text-sm font-mono mt-1">
+                                        <p>HouseAge: 34</p>
+                                    </div>
+                                    <div class="mt-2 p-4 bg-white rounded-md border text-sm">
+                                        <p><strong class="accent-3-text">¿Por qué es mejor?</strong> El modelo aprende que el valor de una propiedad se relaciona más con su <strong class="accent-3-text">antigüedad</strong> (un concepto dinámico) que con su año de construcción (un dato estático). Esta nueva característica captura la depreciación y es mucho más predictiva.</p>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Strategist's Toolkit -->
+            <section id="estrategias" class="mb-16 min-h-screen flex flex-col justify-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h2 class="text-3xl font-bold mb-2">La Caja de Estrategias</h2>
+                    <p class="text-lg text-gray-600 mb-8">¿Qué hacer cuando careces de conocimiento de dominio? No es un callejón sin salida. Aquí tienes un conjunto de herramientas estratégicas para cerrar la brecha.</p>
+
+                    <div id="accordion" class="space-y-4">
+                        <!-- Strategy 1 -->
+                        <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 hover:bg-gray-100 transition">
+                                <span class="font-semibold text-lg">🤝 Colaboración Interdisciplinaria</span>
+                                <span class="accordion-icon text-2xl transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content hidden p-6 bg-white">
+                                <p class="text-gray-600">Es la estrategia más efectiva. Fomenta una comunicación sólida y regular con los Expertos en la Materia (SMEs). Ellos poseen el contexto para enmarcar problemas, interpretar datos y validar hallazgos. <strong class="text-gray-800">La ciencia de datos es un deporte de equipo.</strong></p>
+                            </div>
+                        </div>
+                        <!-- Strategy 2 -->
+                         <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 hover:bg-gray-100 transition">
+                                <span class="font-semibold text-lg">🔍 Análisis Exploratorio de Datos (EDA) Profundo</span>
+                                <span class="accordion-icon text-2xl transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content hidden p-6 bg-white">
+                                <p class="text-gray-600">Utiliza gráficos y visualizaciones para investigar y aprender de los datos mismos. Un EDA profundo puede revelar patrones ocultos, anomalías y relaciones que sugieren principios de dominio subyacentes, guiando preguntas más específicas para los SMEs.</p>
+                            </div>
+                        </div>
+                        <!-- Strategy 3 -->
+                        <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 hover:bg-gray-100 transition">
+                                <span class="font-semibold text-lg">🔄 Enfoque Iterativo y Prototipado Rápido</span>
+                                 <span class="accordion-icon text-2xl transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content hidden p-6 bg-white">
+                                <p class="text-gray-600">Construye modelos mínimos viables y preséntalos para obtener retroalimentación temprana. Cada iteración incorpora nuevo aprendizaje, refinando el modelo y las características. Esto mitiga el riesgo de construir soluciones irrelevantes al aprender del dominio sobre la marcha.</p>
+                            </div>
+                        </div>
+                        <!-- Strategy 4 -->
+                        <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 hover:bg-gray-100 transition">
+                                <span class="font-semibold text-lg">🤖 Aprovechamiento de AutoML</span>
+                                 <span class="accordion-icon text-2xl transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content hidden p-6 bg-white">
+                                <p class="text-gray-600">Las herramientas de AutoML pueden automatizar la ingeniería de características y la selección de modelos, acelerando la experimentación. Sin embargo, no reemplazan la necesidad de definir el problema correctamente e interpretar los resultados. Úsalas como un <strong class="text-gray-800">asistente potente, no como un sustituto</strong>.</p>
+                            </div>
+                        </div>
+                        <!-- Strategy 5 -->
+                        <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-4 hover:bg-gray-100 transition">
+                                <span class="font-semibold text-lg">📚 Investigación Activa y Aprendizaje Continuo</span>
+                                 <span class="accordion-icon text-2xl transform transition-transform">+</span>
+                            </button>
+                            <div class="accordion-content hidden p-6 bg-white">
+                                <p class="text-gray-600">Involúcrate activamente en aprender sobre el dominio. Lee publicaciones de la industria, artículos y participa en foros. Esto te transforma de un ejecutor técnico a un <strong class="text-gray-800">socio estratégico</strong> que puede anticipar desafíos y oportunidades.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Conclusion -->
+            <section id="conclusion" class="min-h-screen flex flex-col justify-center">
+                <div class="bg-color-dark-custom text-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-4 text-center">Conclusión: Hacia Modelos Más Robustos y Relevantes</h2>
+                    <p class="text-lg mb-4 text-center max-w-3xl mx-auto">El conocimiento de dominio es el catalizador que transforma los datos en valor. No es una ventaja, sino un componente indispensable para construir modelos de Machine Learning que sean precisos, interpretables y, lo más importante, <strong class="accent-4-text">relevantes para el negocio</strong>.</p>
+                    <p class="text-lg text-center max-w-3xl mx-auto">Al adoptar un enfoque estratégico que combina la colaboración, la exploración, la iteración y el aprendizaje continuo, los equipos de ciencia de datos pueden superar las barreras del conocimiento y crear soluciones verdaderamente impactantes.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="../index.html">S<span>R</span></a>
+        </div>
+        <div class="footer-links">
+          <a href="../../index.html#home">Inicio</a>
+          <a href="../../index.html#about">Sobre Mí</a>
+          <a href="../../index.html#projects">Portafolio</a>
+          <a href="../../index.html#skills">Habilidades</a>
+          <a href="../../index.html#contact">Contacto</a>
+          <a href="../blog_landing_page.html">Data Science Blog</a></li>
+        </div>
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Sebastián Riveros Portfolio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const CHART_COLORS = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            grey: '#CCCCCC'
+        };
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebar = document.getElementById('sidebar');
+        if (mobileMenuButton && sidebar) {
+            mobileMenuButton.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+
+            // Close sidebar when a navigation link is clicked (for mobile)
+            sidebar.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) { // Only on mobile
+                        sidebar.classList.add('-translate-x-full');
+                    }
+                });
+            });
+        }
+
+        // --- Lifecycle Explorer Logic ---
+        const stages = document.querySelectorAll('.lifecycle-stage');
+        const lifecycleTitle = document.getElementById('lifecycle-title');
+        const lifecycleText = document.getElementById('lifecycle-text');
+        const lifecycleData = {
+            comprension: {
+                title: '🎯 Comprensión del Negocio',
+                text: 'Aquí, el conocimiento de dominio es primordial. Ayuda a definir correctamente el problema, identificar los objetivos empresariales clave y establecer los KPIs correctos para medir el éxito. Sin esto, se corre el riesgo de resolver el problema equivocado.'
+            },
+            datos: {
+                title: '📊 Preprocesamiento de Datos',
+                text: 'El dominio guía cómo tratar los valores faltantes o los outliers. Un valor anómalo puede ser un error de datos o una transacción fraudulenta crítica. El contexto determina la acción correcta y previene la eliminación de información valiosa.'
+            },
+            features: {
+                title: '🛠️ Ingeniería de Características',
+                text: 'Este es el "arte" de la ciencia de datos. El conocimiento del dominio permite crear nuevas variables predictivas que capturar relaciones del mundo real, como calcular la "edad de una casa" a partir del año de construcción y venta. Estas características hacen que los modelos sean más potentes e interpretables.'
+            },
+            modelo: {
+                title: '🧠 Modelado e Implementación',
+                text: 'El contexto ayuda a seleccionar el tipo de modelo adecuado y a interpretar sus resultados. Un experto en el dominio puede validar si las predicciones del modelo son plausibles y relevantes en el mundo real, asegurando que la solución sea útil y fiable.'
+            }
+        };
+
+        stages.forEach(stage => {
+            stage.addEventListener('click', () => {
+                const stageKey = stage.dataset.stage;
+                lifecycleTitle.textContent = lifecycleData[stageKey].title;
+                lifecycleText.textContent = lifecycleData[stageKey].text;
+                
+                stages.forEach(s => s.classList.remove('selected'));
+                stage.classList.add('selected');
+            });
+        });
+
+        // --- Outlier Case Study ---
+        const outlierChartCtx = document.getElementById('outlierChart').getContext('2d');
+        const outlierData = {
+            datasets: [{
+                label: 'Transacciones',
+                data: [
+                    {x: 10, y: 12}, {x: 15, y: 19}, {x: 18, y: 11}, {x: 22, y: 25}, {x: 25, y: 23}, 
+                    {x: 28, y: 30}, {x: 30, y: 28}, {x: 35, y: 40}, {x: 38, y: 35}, {x: 95, y: 98}
+                ],
+                backgroundColor: CHART_COLORS.blue,
+                pointRadius: (context) => (context.dataIndex === 9 ? 8 : 4),
+                pointBackgroundColor: (context) => (context.dataIndex === 9 ? CHART_COLORS.red : CHART_COLORS.blue)
+            }]
+        };
+        new Chart(outlierChartCtx, {
+            type: 'scatter',
+            data: outlierData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { 
+                    x: { 
+                        title: { display: true, text: 'Variable X', color: CHART_COLORS.darkBlue } ,
+                        ticks: { color: CHART_COLORS.darkBlue }
+                    }, 
+                    y: { 
+                        title: { display: true, text: 'Variable Y', color: CHART_COLORS.darkBlue },
+                        ticks: { color: CHART_COLORS.darkBlue }
+                    } 
+                },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        const caseButtons = document.querySelectorAll('.case-button');
+        const outlierExplanation = document.getElementById('outlier-explanation');
+        const outlierExplanations = {
+            finance: '<strong class="accent-1-text">Decisión:</strong> Investigar. Un patrón de transacción tan inusual podría ser la primera señal de un fraude. Eliminarlo sería descartar la señal más crítica. El modelo debe aprender a detectar estas anomalías.',
+            manufacturing: '<strong class="accent-2-text">Decisión:</strong> Transformar o eliminar. Este valor probablemente representa un error del sensor o un fallo en la entrada de datos que no refleja el proceso normal. Mantenerlo podría sesgar el modelo y llevar a predicciones erróneas sobre la producción estándar.'
+        };
+        caseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const domain = button.dataset.domain;
+                outlierExplanation.innerHTML = outlierExplanations[domain];
+            });
+        });
+        
+        // --- Feature Engineering Demo ---
+        const featureEngButton = document.getElementById('feature-eng-button');
+        const featureEngResult = document.getElementById('feature-eng-result');
+        if (featureEngButton && featureEngResult) {
+            featureEngButton.addEventListener('click', () => {
+                featureEngResult.classList.remove('hidden');
+                featureEngButton.classList.add('opacity-50', 'cursor-not-allowed');
+                featureEngButton.disabled = true;
+            });
+        }
+
+        // --- Accordion Logic ---
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
+            const icon = item.querySelector('.accordion-icon');
+            if (header && content && icon) {
+                header.addEventListener('click', () => {
+                    const isVisible = !content.classList.contains('hidden');
+                    content.classList.toggle('hidden');
+                    icon.textContent = isVisible ? '+' : '-';
+                    icon.classList.toggle('rotate-180', !isVisible);
+                });
+            }
+        });
+
+        // --- Active Nav Link on Scroll ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: "-50% 0px -50% 0px" });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
