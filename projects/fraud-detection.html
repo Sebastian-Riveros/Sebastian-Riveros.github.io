@@ -169,27 +169,31 @@
         <div class="container">
             <div class="project-section">
                 <h2>Descripción del Proyecto</h2>
-                <p>Este proyecto se enfoca en el desarrollo de un modelo de machine learning para la predicción del otorgamiento de préstamos bancarios (Credit Scoring). El objetivo principal fue crear un sistema de clasificación que pudiera determinar la probabilidad de que un solicitante de préstamo cumpla con sus obligaciones financieras, optimizando el proceso de toma de decisiones para las instituciones bancarias.</p>
-                <p>El modelo desarrollado no solo se enfoca en la precisión de la clasificación, sino que también incorpora consideraciones económicas y de negocio, utilizando un enfoque de cost-sensitive learning que optimiza el retorno de inversión (ROI) y el beneficio económico neto para la institución financiera.</p>
+                <p> Este proyecto se desarrolló en dos fases: generación de un dataset sintético realista en relación al cometido de Fraudes Financieros en el marco de Transferencias eléctronicas de Fondos TEF's En Chile.</p>
+                <p> desarrollo y evaluación de modelos de machine learning, basados en árboles de decisión (CatBoost, XGBoost y LGBM)</p>
             </div>
 
             <div class="project-section">
                 <h2>Metodología</h2>
                 <p>El desarrollo de este proyecto siguió una metodología estructurada que incluyó:</p>
+
+                <h3>3. Generación de Dataset Sintético</h3>
+                <p>Dada la naturaleza reservada de las TEF's, la generación de un dataset sintético, contextualizado a la realidad de Chile, es útil tanto para estudiantes y profesionales que busquen desarrollar modelos de machine learning interesados en este tipo de problemas</p>
                 
                 <h3>1. Procesamiento de Datos</h3>
                 <p>Implementé técnicas avanzadas de preprocesamiento para limpiar, transformar y preparar los datos para el modelado. Esto incluyó el manejo de valores faltantes, la codificación de variables categóricas y la normalización de características numéricas.</p>
                 
                 <h3>2. Ingeniería de Características</h3>
-                <p>Desarrollé un proceso de feature engineering semántico, creando nuevas variables derivadas que capturan relaciones importantes entre los datos originales y que tienen significado en el contexto financiero. Estas características mejoradas permitieron al modelo capturar patrones más complejos en los datos.</p>
+                <p>Desarrollé un proceso de feature engineering, creando nuevas variables tanto derivadas como de velocidad que permitan capturar dinámicas de comportamiento asociadas al desarrollo de fraudes financieros. Estas características mejoradas permitieron al modelo capturar patrones más complejos en los datos.</p>
                 
-                <h3>3. Modelado Híbrido</h3>
-                <p>Implementé un enfoque de modelado híbrido que combina:</p>
-                <p>Técnicas de cost-sensitive learning para optimizar el ROI y el beneficio económico neto.</p>
-                <p>Métodos estadísticos probabilísticos para cuantificar la incertidumbre en las predicciones</p>
+                <h3>3. Modelos basados en Árboles de Decisión</h3>
+                <p>Implementé el desarrollo de modeloos basados en árboles de decisión. Estas son algunas de sus fortalezas:</p>
+                <p>Algunos, Como CatBoost, pueden manejar de forma nátiva variables categóricas.</p>
+                <p>Son muy robustos de entrenar en contextos de alto desbalanceo de clases, como es el caso actual.</p>
+
+                <h3>4. Evalaución e Interpretabilidad de los modelos desarrollados</h3>
+                <p>Implementé métricas y herramientas de interpretabilidad como ranking de importancias de características, que permitan entender mejor cuales son las que aportan mayor valor predictivo al modelo.</p>
                                 
-                <h3>4. Explicabilidad Integrada</h3>
-                <p>Incorporé mecanismos de explicabilidad en el modelo para proporcionar interpretaciones claras de las decisiones, combinando aspectos económicos y estadísticos que facilitan la comprensión de los resultados por parte de los stakeholders.</p>
             </div>
 
             <div class="project-section">
@@ -199,7 +203,7 @@
                     <span class="tech-item">Pandas</span>
                     <span class="tech-item">Scikit-learn</span>
                     <span class="tech-item">XGBoost</span>
-                    <span class="tech-item">SHAP</span>
+                    <span class="tech-item">Feature_importances</span>
                     <span class="tech-item">Matplotlib</span>
                     <span class="tech-item">Seaborn</span>
                 </div>
@@ -208,30 +212,19 @@
             <div class="project-section">
                 <h2>Resultados y Métricas</h2>
                 <div class="metrics">
-                    <h3>Rendimiento del Modelo</h3>
+                    <h3>Rendimiento del Mejor Modelo: LightGBM</h3>
                     <div class="metric-item">
                         <i class="fas fa-chart-line"></i>
-                        <span>Precision-Recall AUC: 95%</span>
-                    </div>
-                    <div class="metric-item">
-                        <i class="fas fa-coins"></i>
-                        <span>Optimización de ROI basada en costos</span>
-                    </div>
-                    <div class="metric-item">
-                        <i class="fas fa-lightbulb"></i>
-                        <span>Explicabilidad económico-estadística integrada</span>
+                        <span> LighGBM demostró un desempeño excepcional con valores ROC_AUC: 0.98. PR_AUC: 0.87 y F1-Score: 0.83</span> 
                     </div>
                 </div>
-                <p>El modelo logró un rendimiento excepcional con un 95% en la métrica Precision-Recall AUC, lo que demuestra su capacidad para equilibrar eficazmente la identificación de préstamos de alto riesgo mientras minimiza los falsos positivos que podrían resultar en oportunidades de negocio perdidas.</p>
-                <p>Además, el enfoque de cost-sensitive learning permitió optimizar directamente el beneficio económico neto para la institución financiera, considerando tanto los costos de los préstamos impagos como los beneficios de los préstamos exitosos.</p>
+                <p>LightGBM presentó un rendimiento superior a los otros algoritmos, con un 87% en la métrica Precision-Recall, lo que demuestra buena probabilidad de que correctamente el modelo identifique transacciones fraudulentas.</p>
             </div>
 
             <div class="project-section">
                 <h2>Conclusiones</h2>
-                <p>Este proyecto demuestra la efectividad de combinar técnicas avanzadas de machine learning con consideraciones económicas para crear un sistema de credit scoring que no solo es preciso en sus predicciones, sino que también está alineado con los objetivos de negocio de las instituciones financieras.</p>
-                <p>La integración de explicabilidad en el modelo permite una mayor transparencia en el proceso de toma de decisiones, facilitando la adopción del sistema por parte de los analistas de riesgo y cumpliendo con los requisitos regulatorios de explicabilidad en las decisiones de crédito.</p>
-            </div>
-
+                <p>Este proyecto demuestra la importancia de tener datos abiertos (con los resguardos a la privacidad) para la detección de fraude en contexto de TEF's y como los modelos basados en Árboles de decisión pueden ser grandes aliados en su detección</p>
+                
             <div class="back-button">
                 <a href="../index.html#projects" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
             </div>
