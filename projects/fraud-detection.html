@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detección de Fraude Asociados a TEF (Transferencias Electrónicas de Fondos) en Chile. | Portfolio</title>
+    <title> Fraude TEF Chile | Portfolio</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/placeholder.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -159,8 +159,8 @@
     <!-- Cabecera del Proyecto -->
     <section class="project-header">
         <div class="container">
-            <h1 class="project-title">Modelo de Clasificación para Préstamos Bancarios</h1>
-            <p class="project-subtitle">Desafío Kaggle - Credit Scoring</p>
+            <h1 class="project-title">Detección de Fraude Asociados a TEF</h1>
+            <p class="project-subtitle"> Identificación de Fraude en Transferencias electrónicas</p>
         </div>
     </section>
 
@@ -169,28 +169,27 @@
         <div class="container">
             <div class="project-section">
                 <h2>Descripción del Proyecto</h2>
-                <p> Este proyecto se desarrolló en dos fases: generación de un dataset sintético realista en relación al cometido de Fraudes Financieros en el marco de Transferencias eléctronicas de Fondos TEF's En Chile.</p>
-                <p> desarrollo y evaluación de modelos de machine learning, basados en árboles de decisión (CatBoost, XGBoost y LGBM)</p>
+                <p> Este proyecto se desarrolló en dos fases:</p>
+                <p> - Generación de un dataset sintético realista sobre distribucion de transacciones legítimas y fraudulentas en Chile, durante el año 2024. </p>
+                <p> - Desarrollo y evaluación de modelos de machine learning, basados en árboles de decisión (CatBoost, XGBoost y LGBM)</p>
             </div>
 
             <div class="project-section">
                 <h2>Metodología</h2>
                 <p>El desarrollo de este proyecto siguió una metodología estructurada que incluyó:</p>
 
-                <h3>3. Generación de Dataset Sintético</h3>
-                <p>Dada la naturaleza reservada de las TEF's, la generación de un dataset sintético, contextualizado a la realidad de Chile, es útil tanto para estudiantes y profesionales que busquen desarrollar modelos de machine learning interesados en este tipo de problemas</p>
+                <h3>1. Generación de Dataset Sintético</h3>
+                <p>Dada la naturaleza reservada de las TEF's, que incluya características como Monto, fecha, ID_transaccion, receptor_ID, Receptor_ID, Banco, es_fraude('Target') </p>
                 
                 <h3>1. Procesamiento de Datos</h3>
-                <p>Implementé técnicas avanzadas de preprocesamiento para limpiar, transformar y preparar los datos para el modelado. Esto incluyó el manejo de valores faltantes, la codificación de variables categóricas y la normalización de características numéricas.</p>
+                <p>Implementé técnicas avanzadas de preprocesamiento para limpiar, transformar y preparar los datos para el modelado. Esto incluyó la codificación de variables categóricas, y tipo 'timestamp'.</p>
                 
                 <h3>2. Ingeniería de Características</h3>
-                <p>Desarrollé un proceso de feature engineering, creando nuevas variables tanto derivadas como de velocidad que permitan capturar dinámicas de comportamiento asociadas al desarrollo de fraudes financieros. Estas características mejoradas permitieron al modelo capturar patrones más complejos en los datos.</p>
+                <p>Desarrollé feature engineering, creando así nuevas variables tanto derivadas como de velocidad que permitan capturar dinámicas de comportamiento asociadas a los de fraudes bancarios. Estas características mejoradas permitieron al modelo capturar patrones más complejos en los datos.</p>
                 
                 <h3>3. Modelos basados en Árboles de Decisión</h3>
-                <p>Implementé el desarrollo de modeloos basados en árboles de decisión. Estas son algunas de sus fortalezas:</p>
-                <p>Algunos, Como CatBoost, pueden manejar de forma nátiva variables categóricas.</p>
-                <p>Son muy robustos de entrenar en contextos de alto desbalanceo de clases, como es el caso actual.</p>
-
+                <p>Implementé el desarrollo de modeloos basados en árboles de decisión como CatBoost, XGBoost y LightGBM adecuados para este tipo de problemas con clases desbalanceadas en el target.</p>
+                
                 <h3>4. Evalaución e Interpretabilidad de los modelos desarrollados</h3>
                 <p>Implementé métricas y herramientas de interpretabilidad como ranking de importancias de características, que permitan entender mejor cuales son las que aportan mayor valor predictivo al modelo.</p>
                                 
@@ -199,12 +198,11 @@
             <div class="project-section">
                 <h2>Tecnologías Utilizadas</h2>
                 <div class="tech-stack">
-                    <span class="tech-item">Python</span>
+                    <span class="tech-item">CatBoost</span>
                     <span class="tech-item">Pandas</span>
                     <span class="tech-item">Scikit-learn</span>
                     <span class="tech-item">XGBoost</span>
-                    <span class="tech-item">Feature_importances</span>
-                    <span class="tech-item">Matplotlib</span>
+                    <span class="tech-item">Feature_Importances</span>
                     <span class="tech-item">Seaborn</span>
                 </div>
             </div>
