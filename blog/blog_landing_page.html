@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DS Blog | Sebastián Riveros</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .blog-header {
+      background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), url('../images/datascience.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      margin-top: 70px;
+    }
+    .blog-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+    }
+    .blog-list {
+      padding: 60px 20px;
+      background-color: var(--dark-color);
+    }
+    .blog-card {
+      background: #161b22;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+    .blog-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--white-color);
+    }
+    .blog-card .meta {
+      color: var(--gray-color);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    .blog-card p {
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+    .blog-card a {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .sort-bar {
+      text-align: right;
+      margin-bottom: 30px;
+    }
+    .sort-bar select {
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #0d1117;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación -->
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="../index.html">S<span>R</span></a>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+          <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="../index.html#home" class="nav-link">Inicio</a></li>
+          <li><a href="../index.html#about" class="nav-link">Sobre Mí</a></li>
+          <li><a href="../index.html#projects" class="nav-link">Portfolio</a></li>
+          <li><a href="../index.html#skills" class="nav-link">Habilidades</a></li>
+          <li><a href="../index.html#contact" class="nav-link">Contacto</a></li>
+          <li><a href="./blog_landing_page.html" class="nav-link">Data Science Blog</a></li>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Cabecera -->
+  <section class="blog-header">
+    <div class="container">
+      <h1 class="blog-title">Data Science Blog</h1>
+    </div>
+  </section>
+
+  <!-- Lista de Entradas -->
+  <section class="blog-list">
+    <div class="container">
+      <div class="sort-bar">
+        <label for="sort">Ordenar por:</label>
+        <select id="sort">
+          <option value="newest">Más recientes</option>
+          <option value="oldest">Más antiguos</option>
+        </select>
+      </div>
+
+      <!-- Entrada de blog -->
+      <div class="blog-card" data-date="2025-05-26">
+        <h2>Navegando el Universo de los Lenguajes en Ciencia de Datos</h2>
+        <div class="meta">Publicado el 26 de mayo de 2025</div>
+        <p>Una guía comparativa de Python, R, Julia y Scala basada en las últimas tendencias del ecosistema de ciencia de datos.</p>
+        <a href="entradas/lenguajes-de-programacion-ciencia-de-datos.html">Leer artículo completo →</a>
+      </div>
+
+      <!-- Entrada de blog -->
+      <div class="blog-card" data-date="2025-06-13">
+        <h2>El Poder del Contexto en la Ciencia de Datos</h2>
+        <div class="meta">Publicado el 13 de Junio de 2025</div>
+        <p>Más allá de los algoritmos y la computación, el éxito en el Machine Learning depende de un pilar fundamental: el conocimiento de dominio.</p>
+        <a href="entradas/el_poder_del_contexto_en_ciencia_de_datos.html">Leer artículo completo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="../index.html">S<span>R</span></a>
+        </div>
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Sebastián Riveros Portfolio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Ordenamiento por fecha de publicación
+    const sortSelect = document.getElementById('sort');
+    const container = document.querySelector('.blog-list .container');
+    const cards = Array.from(document.querySelectorAll('.blog-card'));
+
+    sortSelect.addEventListener('change', () => {
+      const sorted = cards.sort((a, b) => {
+        const dateA = new Date(a.dataset.date);
+        const dateB = new Date(b.dataset.date);
+        return sortSelect.value === 'newest' ? dateB - dateA : dateA - dateB;
+      });
+      sorted.forEach(card => container.appendChild(card));
+    });
+  </script>
+</body>
+</html>
+

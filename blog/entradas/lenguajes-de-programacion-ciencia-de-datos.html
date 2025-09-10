@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Lenguajes en Ciencia de Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto; /* Using Inter as a professional sans-serif font */
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .section-title {
+            color: #073B4C; /* Dark Slate Blue from palette */
+        }
+        .accent-color-1 { color: #FF6B6B; } /* Coral Red */
+        .accent-color-2 { color: #FFD166; } /* Sunny Yellow */
+        .accent-color-3 { color: #06D6A0; } /* Tealish Green */
+        .accent-color-4 { color: #118AB2; } /* Cerulean Blue */
+        .text-color-dark { color: #073B4C; }
+        .bg-color-dark { background-color: #1A1A2ECC; } 
+        .bg-color-light { background-color: #EFF6FF; } /* Light blue, complements Cerulean */
+
+        /* Flowchart/Diagram styles */
+        .flow-node {
+            background-color: #118AB2; /* Cerulean Blue */
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            margin: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.25rem 0;
+            color: #073B4C;
+        }
+        .flow-arrow::after {
+            content: '▼'; /* Simple arrow down */
+            font-size: 1.5rem;
+        }
+        .flow-arrow-right::after {
+            content: '►'; /* Simple arrow right */
+            font-size: 1.5rem;
+        }
+         .decision-node {
+            background-color: #E0F2FE; /* Lighter blue for questions */
+            border: 2px solid #118AB2;
+            color: #073B4C;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .decision-answer {
+            background-color: #FFFBEB; /* Light yellow for answers */
+            border: 1px solid #FFD166;
+            color: #073B4C;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        .decision-recommendation {
+            background-color: #D1FAE5; /* Light green for recommendations */
+            border: 2px solid #06D6A0;
+            color: #073B4C;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        .interop-box {
+            border: 2px solid #118AB2;
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: #fff;
+        }
+        .interop-arrow {
+            font-size: 1.5rem;
+            color: #06D6A0;
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-color-light text-color-dark leading-normal tracking-normal">
+
+    <header class="bg-color-dark text-white p-6 shadow-lg">
+        <div class="container mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold text-center">Navegando el Universo de los Lenguajes en Ciencia de Datos</h1>
+            <p class="text-center text-lg mt-2">Una guía comparativa de Python, R, Julia y Scala basada en las últimas tendencias.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduccion" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-xl">
+                <h2 class="text-3xl font-bold section-title mb-4 text-center">Eligiendo tu Superpoder en Ciencia de Datos</h2>
+                <p class="text-lg mb-4">
+                    El campo de la ciencia de datos es un ecosistema dinámico donde la elección del lenguaje de programación es crucial. No existe un "mejor" lenguaje universal; la selección óptima depende de los requisitos del proyecto, la experiencia del equipo y los resultados deseados. Esta infografía explora cuatro contendientes principales: Python, R, Julia y Scala, para ayudarte a tomar una decisión informada.
+                </p>
+                <p class="text-md italic text-center">
+                    Python lidera en popularidad, R sigue siendo fuerte en estadística, Julia busca el equilibrio entre rendimiento y productividad, y Scala brilla en el procesamiento de Big Data.
+                </p>
+            </div>
+        </section>
+
+        <section id="titanes" class="mb-12">
+            <h2 class="text-3xl font-bold section-title mb-6 text-center">Los Titanes: Python vs. R</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 accent-color-4">🐍 Python: La Navaja Suiza Universal</h3>
+                    <p class="mb-4">Python se ha consolidado como el estándar de facto gracias a su facilidad de uso, su vasto ecosistema de bibliotecas y su versatilidad en múltiples dominios. Es la opción preferida para Machine Learning, Deep Learning y prototipado rápido.</p>
+                    <div class="chart-container w-full max-w-md h-72 md:h-80">
+                        <canvas id="pythonPopularityChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center mt-2 italic">Ilustración de la popularidad relativa en ciencia de datos.</p>
+                    <p class="mt-4 mb-2 font-semibold">Fortalezas Clave:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Versatilidad:</strong> Aplicable a ML/DL, desarrollo web, automatización.</li>
+                        <li><strong>Ecosistema Extenso:</strong> NumPy, Pandas, Scikit-learn, TensorFlow, PyTorch.</li>
+                        <li><strong>Facilidad de Aprendizaje:</strong> Sintaxis legible y amigable para principiantes.</li>
+                        <li><strong>Comunidad Grande y Activa:</strong> Amplio soporte y recursos.</li>
+                    </ul>
+                    <p class="mt-4 mb-2 font-semibold">Debilidades Comunes:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Menor rendimiento nativo (mitigado por bibliotecas en C/Fortran).</li>
+                        <li>Mayor consumo de memoria en algunos casos.</li>
+                        <li>GIL (Global Interpreter Lock) puede limitar el paralelismo real en CPU.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 accent-color-1">📊 R: El Maestro Estadístico</h3>
+                    <p class="mb-4">R es un lenguaje especializado diseñado para la computación estadística y gráficos de alta calidad. Mantiene una fuerte presencia en la investigación académica, bioestadística y finanzas cuantitativas.</p>
+                    <div class="chart-container w-full max-w-md h-72 md:h-80">
+                        <canvas id="rStrengthsChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center mt-2 italic">Principales áreas de fortaleza de R.</p>
+                     <p class="mt-4 mb-2 font-semibold">Fortalezas Clave:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Análisis Estadístico Exhaustivo:</strong> Inigualable en paquetes estadísticos (Tidyverse, caret).</li>
+                        <li><strong>Visualización de Datos Avanzada:</strong> ggplot2 para gráficos de calidad publicable.</li>
+                        <li><strong>Comunidad Académica Fuerte:</strong> Ideal para investigación y finanzas.</li>
+                        <li><strong>Entorno RStudio:</strong> IDE potente que mejora la productividad.</li>
+                    </ul>
+                    <p class="mt-4 mb-2 font-semibold">Debilidades Comunes:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Curva de aprendizaje más pronunciada para no programadores.</li>
+                        <li>Menor rendimiento en tareas de propósito general.</li>
+                        <li>Gestión de memoria puede ser un desafío con datasets muy grandes sin integración.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contendientes" class="mb-12">
+            <h2 class="text-3xl font-bold section-title mb-6 text-center">Los Nuevos Contendientes: Julia y Scala</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 accent-color-3">🚀 Julia: En Busca del Rendimiento Perdido</h3>
+                    <p class="mb-4">Julia fue creada para resolver el "problema de los dos lenguajes", buscando ofrecer la productividad de Python/R con la velocidad de C/Fortran. Es ideal para computación científica y simulaciones numéricas.</p>
+                    <div class="chart-container w-full max-w-md h-72 md:h-80">
+                        <canvas id="juliaPerformanceChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center mt-2 italic">Julia busca el equilibrio óptimo entre productividad y rendimiento.</p>
+                    <p class="mt-4 mb-2 font-semibold">Fortalezas Clave:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Alto Rendimiento:</strong> Compilación JIT para velocidades cercanas a C.</li>
+                        <li><strong>Sintaxis Matemática:</strong> Intuitiva para científicos e ingenieros.</li>
+                        <li><strong>Despacho Múltiple:</strong> Potente paradigma de programación.</li>
+                        <li><strong>Interoperabilidad:</strong> Puede usar bibliotecas de Python, R, C++.</li>
+                    </ul>
+                    <p class="mt-4 mb-2 font-semibold">Debilidades Comunes:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Comunidad y ecosistema más pequeños y en maduración.</li>
+                        <li>"Tiempo hasta el primer gráfico" puede ser lento debido a la compilación inicial.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 accent-color-2">🔗 Scala: Escalando las Cumbres del Big Data</h3>
+                    <p class="mb-4">Scala, ejecutándose en la JVM, combina programación orientada a objetos y funcional. Está diseñado para la escalabilidad, siendo una opción principal para Apache Spark y sistemas de Big Data empresariales.</p>
+                    <div class="text-center my-6 p-4 border-2 border-dashed border-amber-400 rounded-lg bg-amber-50">
+                        <h4 class="text-xl font-semibold mb-3 text-amber-700">Scala y el Ecosistema Big Data</h4>
+                        <div class="flex flex-col items-center">
+                            <div class="flow-node bg-amber-500">Apache Spark</div>
+                            <div class="flow-arrow text-amber-600"></div>
+                            <div class="flex justify-center">
+                                <div class="flow-node bg-amber-500 mx-2">Scala</div>
+                                <div class="flow-node bg-amber-500 mx-2">Java (JVM)</div>
+                            </div>
+                            <div class="flow-arrow text-amber-600"></div>
+                            <div class="flow-node bg-amber-500">Procesamiento Distribuido de Alto Rendimiento</div>
+                        </div>
+                         <p class="text-sm text-center mt-3 italic text-amber-700">Scala es fundamental para el procesamiento de datos a gran escala con Spark.</p>
+                    </div>
+                    <p class="mt-4 mb-2 font-semibold">Fortalezas Clave:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Escalabilidad y Rendimiento:</strong> Ideal para Big Data con Spark, hasta 10x más rápido que Python en ciertos casos.</li>
+                        <li><strong>Interoperabilidad con JVM:</strong> Acceso al ecosistema Java.</li>
+                        <li><strong>Tipado Estático:</strong> Detección temprana de errores, código robusto.</li>
+                        <li><strong>Programación Funcional y OO:</strong> Flexibilidad y potencia.</li>
+                    </ul>
+                    <p class="mt-4 mb-2 font-semibold">Debilidades Comunes:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Curva de aprendizaje pronunciada y complejidad.</li>
+                        <li>Comunidad más pequeña en comparación con Python.</li>
+                        <li>Tiempos de compilación pueden ser más largos.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparativa" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-xl overflow-x-auto">
+                <h2 class="text-3xl font-bold section-title mb-6 text-center">Cara a Cara: Comparativa Detallada</h2>
+                <p class="text-lg mb-6 text-center">La siguiente tabla resume las características clave de cada lenguaje, ayudándote a visualizar sus fortalezas y debilidades relativas en diferentes aspectos cruciales para la ciencia de datos.</p>
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Característica</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider accent-color-4">Python</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider accent-color-1">R</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider accent-color-3">Julia</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider accent-color-2">Scala</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Facilidad de Aprendizaje</td>
+                            <td class="px-4 py-3">Fácil, amigable</td>
+                            <td class="px-4 py-3">Pronunciada para no prog.</td>
+                            <td class="px-4 py-3">Relativamente fácil</td>
+                            <td class="px-4 py-3">Pronunciada, compleja</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Rendimiento</td>
+                            <td class="px-4 py-3">Más lento (mitigado)</td>
+                            <td class="px-4 py-3">Más lento</td>
+                            <td class="px-4 py-3">Alto (cercano a C)</td>
+                            <td class="px-4 py-3">Alto (JVM, compilado)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Eficiencia de Memoria</td>
+                            <td class="px-4 py-3">Alto consumo (mitigado)</td>
+                            <td class="px-4 py-3">Intensivo (sin integración)</td>
+                            <td class="px-4 py-3">Mejor gestión</td>
+                            <td class="px-4 py-3">Más eficiente (tipado estático)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Escalabilidad</td>
+                            <td class="px-4 py-3">Alta (Hadoop, etc.)</td>
+                            <td class="px-4 py-3">Menor (sin integración)</td>
+                            <td class="px-4 py-3">Soporta dist./paralela</td>
+                            <td class="px-4 py-3">Muy alta (Spark)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Fortalezas Principales</td>
+                            <td class="px-4 py-3">Versatilidad, ML/DL, Ecosistema</td>
+                            <td class="px-4 py-3">Estadística, Visualización</td>
+                            <td class="px-4 py-3">Computación científica/numérica</td>
+                            <td class="px-4 py-3">Big Data, Flujos, JVM</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Ecosistema Clave</td>
+                            <td class="px-4 py-3">NumPy, Pandas, SciKit, TF, PyTorch</td>
+                            <td class="px-4 py-3">Tidyverse, ggplot2, caret</td>
+                            <td class="px-4 py-3">DataFrames.jl, Flux.jl</td>
+                            <td class="px-4 py-3">Apache Spark, Akka, MLlib</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Comunidad</td>
+                            <td class="px-4 py-3">Enorme, activa</td>
+                            <td class="px-4 py-3">Grande, académica</td>
+                            <td class="px-4 py-3">Pequeña, en crecimiento</td>
+                            <td class="px-4 py-3">Pequeña, nicho Big Data</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 font-semibold">Casos de Uso Comunes</td>
+                            <td class="px-4 py-3">ML/DL, Web, NLP, CV</td>
+                            <td class="px-4 py-3">Modelado estadístico, Investigación</td>
+                            <td class="px-4 py-3">Simulaciones, Computación alto rendimiento</td>
+                            <td class="px-4 py-3">Procesamiento Big Data, Sistemas empresariales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tendencias" class="mb-12">
+            <h2 class="text-3xl font-bold section-title mb-6 text-center">Tendencias Clave que Definen el Futuro</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 accent-color-1">🌐 El Científico de Datos Políglota</h3>
+                    <p class="mb-3">La tendencia es hacia la especialización y la interoperabilidad. Un solo lenguaje rara vez es suficiente. Los profesionales se benefician de conocer múltiples lenguajes para usar la mejor herramienta en cada etapa.</p>
+                    <div class="flex flex-wrap justify-center items-center">
+                        <div class="interop-box">Python</div>
+                        <div class="interop-arrow">⇄</div>
+                        <div class="interop-box">Julia</div>
+                        <div class="interop-arrow">⇄</div>
+                        <div class="interop-box">R</div>
+                    </div>
+                     <div class="flex flex-wrap justify-center items-center mt-2">
+                        <div class="interop-box">Java/JVM</div>
+                        <div class="interop-arrow">→</div>
+                        <div class="interop-box">Scala</div>
+                        <div class="interop-arrow">←</div>
+                        <div class="interop-box">Python (ScalaPy)</div>
+                    </div>
+                    <p class="text-sm text-center mt-2 italic">La interoperabilidad permite combinar fortalezas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 accent-color-3">⚖️ Rendimiento vs. Productividad</h3>
+                    <p>Existe una tensión constante entre la velocidad de ejecución y la facilidad de desarrollo. Python y R priorizan la productividad, mientras Julia y Scala buscan ofrecer mayor rendimiento, a menudo con curvas de aprendizaje más pronunciadas. La elección depende del cuello de botella crítico del proyecto.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-xl md:col-span-2 lg:col-span-1">
+                    <h3 class="text-xl font-semibold mb-3 accent-color-2">🎯 Convergencia vs. Especialización</h3>
+                    <p>Python se expande para cubrir casi todo (convergencia). R, Julia y Scala se destacan en nichos específicos (estadística, computación de alto rendimiento, big data). El futuro es un ecosistema donde se aprovechan las fortalezas especializadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="guia" class="mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-xl">
+                <h2 class="text-3xl font-bold section-title mb-6 text-center">¿Cuál Elegir? Guía de Decisión y Recursos</h2>
+                <p class="text-lg mb-6">La elección del lenguaje debe considerar los requisitos del proyecto, la experiencia del equipo, las necesidades del ecosistema y el equilibrio entre rendimiento y productividad. Aquí una guía simplificada:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <div class="decision-node">
+                            ¿Necesitas versatilidad, prototipado rápido y un gran ecosistema para ML/AI general?
+                        </div>
+                        <div class="text-center flow-arrow"></div>
+                        <div class="decision-recommendation accent-color-4">Python es tu mejor opción.</div>
+                    </div>
+                    <div>
+                        <div class="decision-node">
+                            ¿El foco es el análisis estadístico profundo, la investigación académica o visualizaciones de alta calidad?
+                        </div>
+                        <div class="text-center flow-arrow"></div>
+                        <div class="decision-recommendation accent-color-1">R sigue siendo formidable.</div>
+                    </div>
+                    <div>
+                        <div class="decision-node">
+                            ¿Requieres máximo rendimiento para computación científica/numérica intensiva y quieres evitar el "problema de los dos lenguajes"?
+                        </div>
+                        <div class="text-center flow-arrow"></div>
+                        <div class="decision-recommendation accent-color-3">Considera Julia.</div>
+                    </div>
+                    <div>
+                        <div class="decision-node">
+                            ¿Estás construyendo sistemas de Big Data escalables, procesamiento de flujos o pipelines de ML empresariales (especialmente con Spark)?
+                        </div>
+                        <div class="text-center flow-arrow"></div>
+                        <div class="decision-recommendation accent-color-2">Scala es ideal.</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-semibold section-title mt-8 mb-4 text-center">Recursos Gratuitos para Empezar</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-4 border rounded-lg hover:shadow-md transition-shadow bg-sky-50">
+                        <h4 class="font-bold text-lg accent-color-4">Python</h4>
+                        <p class="text-sm">Google AI Education, Codecademy, Documentación oficial.</p>
+                        <a href="https://ai.google/education/" target="_blank" class="text-blue-600 hover:underline text-sm">Google AI Edu →</a>
+                    </div>
+                    <div class="p-4 border rounded-lg hover:shadow-md transition-shadow bg-red-50">
+                        <h4 class="font-bold text-lg accent-color-1">R</h4>
+                        <p class="text-sm">Swirl (en R), DataCamp (cursos introductorios), The R Project.</p>
+                        <a href="https://www.r-project.org/" target="_blank" class="text-blue-600 hover:underline text-sm">The R Project →</a>
+                    </div>
+                    <div class="p-4 border rounded-lg hover:shadow-md transition-shadow bg-green-50">
+                        <h4 class="font-bold text-lg accent-color-3">Julia</h4>
+                        <p class="text-sm">Documentación oficial (julialang.org), JuliaAcademy.</p>
+                         <a href="https://julialang.org/learning/" target="_blank" class="text-blue-600 hover:underline text-sm">Aprende Julia →</a>
+                    </div>
+                    <div class="p-4 border rounded-lg hover:shadow-md transition-shadow bg-yellow-50">
+                        <h4 class="font-bold text-lg accent-color-2">Scala</h4>
+                        <p class="text-sm">Scala Exercises, Documentación oficial, Cursos en Coursera/edX (algunos gratuitos).</p>
+                        <a href="https://www.scala-lang.org/documentation/" target="_blank" class="text-blue-600 hover:underline text-sm">Documentación Scala →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="mb-12">
+             <div class="bg-color-dark text-white p-8 rounded-lg shadow-xl">
+                <h2 class="text-3xl font-bold mb-4 text-center">Conclusión: La Decisión Estratégica</h2>
+                <p class="text-lg mb-4">
+                    La elección del lenguaje en ciencia de datos es una decisión estratégica que debe alinearse con los objetivos del proyecto y las capacidades del equipo. Python destaca por su versatilidad, R por su maestría estadística, Julia por su búsqueda de rendimiento y Scala por su poder en Big Data.
+                </p>
+                <p class="text-lg">
+                    El futuro es políglota: la capacidad de combinar las fortalezas de diferentes lenguajes es cada vez más valiosa. Comprender las particularidades de cada uno y cómo se adaptan a tus necesidades te permitirá tomar la mejor decisión para optimizar la eficiencia, la escalabilidad y el éxito de tus proyectos de ciencia de datos.
+                </p>
+            </div>
+        </section>
+    </main>
+    <script>
+        const CHART_COLORS = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            grey: '#CCCCCC'
+        };
+
+        function wrapLabels(label, maxWidth = 16) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label];
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: CHART_COLORS.darkBlue,
+                        font: { size: 12 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: CHART_COLORS.darkBlue,
+                    titleColor: CHART_COLORS.yellow,
+                    bodyColor: CHART_COLORS.green,
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: CHART_COLORS.darkBlue, font: { size: 10 } },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: CHART_COLORS.darkBlue, font: { size: 10 } },
+                    grid: { color: CHART_COLORS.grey, borderDash: [2, 4] }
+                }
+            }
+        };
+
+
+        // Python Popularity Chart (Donut)
+        const pythonPopularityCtx = document.getElementById('pythonPopularityChart')?.getContext('2d');
+        if (pythonPopularityCtx) {
+            new Chart(pythonPopularityCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Python', 'R', 'Otros Lenguajes'],
+                    datasets: [{
+                        label: 'Popularidad en Ciencia de Datos (Ilustrativo)',
+                        data: [65, 25, 10],
+                        backgroundColor: [CHART_COLORS.blue, CHART_COLORS.red, CHART_COLORS.grey],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: { ...commonChartOptions, cutout: '60%' }
+            });
+        }
+
+        // R Strengths Chart (Horizontal Bar)
+        const rStrengthsCtx = document.getElementById('rStrengthsChart')?.getContext('2d');
+        if (rStrengthsCtx) {
+            const rLabels = ['Análisis Estadístico', 'Visualización de Datos', 'Investigación Académica', 'Finanzas Cuantitativas'].map(l => wrapLabels(l));
+            new Chart(rStrengthsCtx, {
+                type: 'bar',
+                data: {
+                    labels: rLabels,
+                    datasets: [{
+                        label: 'Nivel de Fortaleza',
+                        data: [95, 90, 85, 80],
+                        backgroundColor: CHART_COLORS.red,
+                        borderColor: CHART_COLORS.darkBlue,
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...commonChartOptions, indexAxis: 'y' }
+            });
+        }
+
+        // Julia Performance/Productivity Chart (Line)
+        const juliaPerformanceCtx = document.getElementById('juliaPerformanceChart')?.getContext('2d');
+        if (juliaPerformanceCtx) {
+            new Chart(juliaPerformanceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Bajo Rendimiento, Alta Prod.', 'Objetivo de Julia', 'Alto Rendimiento, Baja Prod.'].map(l => wrapLabels(l, 20)),
+                    datasets: [{
+                        label: 'Productividad Desarrollador',
+                        data: [90, 85, 40],
+                        borderColor: CHART_COLORS.green,
+                        backgroundColor: 'rgba(6, 214, 160, 0.1)',
+                        fill: true,
+                        tension: 0.1
+                    }, {
+                        label: 'Rendimiento Ejecución',
+                        data: [30, 85, 95],
+                        borderColor: CHART_COLORS.blue,
+                        backgroundColor: 'rgba(17, 138, 178, 0.1)',
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: commonChartOptions
+            });
+        }
+    </script>
+</body>
+ <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="../index.html">S<span>R</span></a>
+        </div>
+        <div class="footer-links">
+          <a href="../../index.html#home">Inicio</a>
+          <a href="../../index.html#about">Sobre Mí</a>
+          <a href="../../index.html#projects">Portafolio</a>
+          <a href="../../index.html#skills">Habilidades</a>
+          <a href="../../index.html#contact">Contacto</a>
+          <a href="../blog_landing_page.html">Data Science Blog</a></li>
+        </div>
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Sebastián Riveros Portfolio. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
