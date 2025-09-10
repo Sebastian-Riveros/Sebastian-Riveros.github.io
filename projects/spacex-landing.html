@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis y Modelos para SpaceX | Portfolio</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/placeholder.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .project-header {
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), url('../images/datascience.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .project-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .project-content {
+            padding: 60px 0;
+        }
+        
+        .project-section {
+            margin-bottom: 40px;
+        }
+        
+        .project-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .project-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+        }
+        
+        .project-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .project-image {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background-color: rgba(74, 108, 247, 0.1);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .metrics {
+            background-color: var(--light-gray-color);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .metrics h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .metric-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .metric-item i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .back-button {
+            margin-top: 40px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .project-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="../index.html">S<span>R</span></a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html#home" class="nav-link">Inicio</a></li>
+                    <li><a href="../index.html#about" class="nav-link">Sobre Mí</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Portfolio</a></li>
+                    <li><a href="../index.html#skills" class="nav-link">Habilidades</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cabecera del Proyecto -->
+    <section class="project-header">
+        <div class="container">
+            <h1 class="project-title">Análisis y Modelos para SpaceX</h1>
+            <p class="project-subtitle">Optimización de procesos operacionales de SpaceX</p>
+        </div>
+    </section>
+
+    <!-- Contenido del Proyecto -->
+    <section class="project-content">
+        <div class="container">
+            <div class="project-section">
+                <h2>Descripción del Proyecto</h2>
+                <p>Este proyecto se enfoca en el análisis y desarrollo de modelos para la optimización de procesos operacionales de SpaceX, con especial énfasis en la predicción del éxito o fracaso del aterrizaje de los cohetes Falcon 9. El objetivo principal fue crear un sistema de clasificación que pudiera determinar la probabilidad de un aterrizaje exitoso basado en datos históricos de lanzamientos y condiciones operativas.</p>
+                <p>El proyecto incluyó un análisis exhaustivo de datos, visualizaciones geoespaciales, y la implementación de diversos modelos de machine learning para identificar los factores más influyentes en el resultado de los aterrizajes.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Metodología</h2>
+                <p>El desarrollo de este proyecto siguió una metodología estructurada que incluyó:</p>
+                
+                <h3>1. Análisis Exploratorio de Datos (EDA)</h3>
+                <p>Desarrollé un análisis exploratorio exhaustivo para adquirir conocimiento en profundidad de los datos provistos, identificando patrones y tendencias significativas en los lanzamientos históricos de SpaceX. Este análisis permitió comprender mejor las variables que influyen en el éxito o fracaso de los aterrizajes.</p>
+                
+                <h3>2. Análisis de Proximidad Geolocalizada</h3>
+                <p>Implementé análisis de proximidad geolocalizada utilizando la biblioteca Folium para detectar influencias geolocalizadas en el aterrizaje de cohetes Falcon 9, Fase 1. Este análisis permitió visualizar y comprender cómo la ubicación de lanzamiento y aterrizaje afecta el resultado de la misión.</p>
+                
+                <h3>3. Modelado Predictivo</h3>
+                <p>Generé y evalué múltiples modelos predictivos de clasificación para determinar el éxito o fracaso de futuros aterrizajes de la fase 1 de los cohetes Falcon 9, incluyendo:</p>
+                <ul>
+                    <li>Support Vector Classifier (SVC)</li>
+                    <li>Árboles de decisión</li>
+                    <li>K-Nearest Neighbors (KNN)</li>
+                    <li>Regresión logística</li>
+                </ul>
+                
+                <h3>4. Evaluación y Visualización</h3>
+                <p>Implementé métricas de evaluación y visualizaciones para comparar el rendimiento de los diferentes modelos y seleccionar el más adecuado para la predicción de aterrizajes.</p>
+                
+                <h3>5. Estrategias de Despliegue</h3>
+                <p>Creé estrategias para el despliegue (Deployment) y monitoreo (Data drifting) en entornos reales de implementación del modelo, asegurando su efectividad continua a medida que se recopilan nuevos datos de lanzamientos.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Tecnologías Utilizadas</h2>
+                <div class="tech-stack">
+                    <span class="tech-item">Python</span>
+                    <span class="tech-item">Pandas</span>
+                    <span class="tech-item">Scikit-learn</span>
+                    <span class="tech-item">Folium</span>
+                    <span class="tech-item">Matplotlib</span>
+                    <span class="tech-item">Seaborn</span>
+                    <span class="tech-item">Jupyter Notebook</span>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Resultados y Métricas</h2>
+                <div class="metrics">
+                    <h3>Rendimiento del Modelo</h3>
+                    <div class="metric-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Precision-Recall AUC: 92%</span>
+                    </div>
+                    <div class="metric-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Análisis geoespacial de factores de influencia</span>
+                    </div>
+                    <div class="metric-item">
+                        <i class="fas fa-rocket"></i>
+                        <span>Identificación de variables clave para aterrizajes exitosos</span>
+                    </div>
+                </div>
+                <p>El modelo logró un rendimiento excepcional con un 92% en la métrica Precision-Recall AUC, demostrando su capacidad para predecir con alta precisión el éxito o fracaso de los aterrizajes de cohetes Falcon 9.</p>
+                <p>El análisis geoespacial reveló patrones significativos en la relación entre ubicaciones de lanzamiento y tasas de éxito de aterrizaje, proporcionando información valiosa para la planificación de futuras misiones.</p>
+            </div>
+
+            <div class="project-section">
+                <h2>Conclusiones</h2>
+                <p>Este proyecto demuestra la efectividad de combinar técnicas avanzadas de análisis de datos y machine learning para optimizar procesos operacionales críticos en la industria aeroespacial. Los modelos desarrollados pueden ayudar a SpaceX a mejorar sus tasas de éxito en aterrizajes, reduciendo costos y aumentando la eficiencia de sus operaciones.</p>
+                <p>Las estrategias de despliegue y monitoreo diseñadas aseguran que el modelo pueda adaptarse a nuevos datos y mantener su precisión a lo largo del tiempo, proporcionando valor continuo a las operaciones de SpaceX.</p>
+            </div>
+
+            <div class="back-button">
+                <a href="../index.html#projects" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Volver a Proyectos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="../index.html">DS<span>Portfolio</span></a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-kaggle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sebastián Riveros Portfolio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
