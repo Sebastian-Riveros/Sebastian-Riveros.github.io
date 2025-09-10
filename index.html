@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastián Riveros Salas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/placeholder.css">
+    <link rel="stylesheet" href="css/hero-custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="#home">S<span>R</span></a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link">Inicio</a></li>
+                    <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+                    <li><a href="#projects" class="nav-link">Portfolio</a></li>
+                    <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                    <li><a href="#contact" class="nav-link">Contacto</a></li>
+                    <li><a href="blog/blog_landing_page.html" class="nav-link">Data Science Blog</a>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección de Inicio -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="signature-name">Sebastián Riveros Salas</h1>
+                <p class="profession-title">Data Scientist & Business Intelligence Analyst</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contact" class="btn btn-secondary">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre Mí</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/profile.jpg" alt="Sebastián Riveros Salas" id="profile-image">
+                </div>
+                <div class="about-text">
+                    <h3>Data Scientist Comprometido</h3>
+                    <p>Soy un profesional de Data Science comprometido con el desarrollo de soluciones basadas en datos que generan impacto real. Mi experiencia abarca desde el análisis exploratorio de datos hasta el desarrollo e implementación de modelos de machine learning para resolver problemas complejos.</p>
+                    <p>Mi enfoque combina sólidos conocimientos técnicos con una comprensión profunda del negocio, lo que me permite traducir datos en insights accionables y modelos predictivos efectivos.</p>
+                    <div class="about-details">
+                        <div class="detail">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Formación en Data Science</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-code"></i>
+                            <span>Programación en Python</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Análisis Estadístico</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-brain"></i>
+                            <span>Machine Learning</span>
+                        </div>
+                    </div>
+                    <a href="CV/cv.pdf" class="btn btn-primary">Descargar CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Proyectos -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Portfolio de Proyectos</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/prestamo.jpg" alt="Proyecto de Préstamos Bancarios" id="project1-placeholder">
+                    </div>
+                    <div class="project-content">
+                        <h3>Modelo de Clasificación para Préstamos Bancarios</h3>
+                        <p>Desarrollo de un modelo híbrido de machine learning basado en un enfoque cost-sensitive learning y estadístico probabilístico para predecir la aprobación de préstamos bancarios.</p>
+                        <div class="project-tags">
+                            <span>Clasificación</span>
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                        </div>
+                        <a href="projects/loan-prediction.html" class="btn btn-secondary project-btn">Ver Detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/casas_prediccion.jpg" alt="Proyecto de Predicción de Viviendas" id="project2-placeholder">
+                    </div>
+                    <div class="project-content">
+                        <h3>Predicción del Valor de Viviendas (EE.UU)</h3>
+                        <p>Análisis y desarrollo de modelos lineales para la predicción del valor de viviendas en Maryland, utilizando técnicas de webscraping y feature engineering.</p>
+                        <div class="project-tags">
+                            <span>Regresión</span>
+                            <span>Webscraping</span>
+                            <span>Feature Engineering</span>
+                        </div>
+                        <a href="projects/house-prediction.html" class="btn btn-secondary project-btn">Ver Detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/spacex.jpg" alt="Proyecto de SpaceX" id="project3-placeholder">
+                    </div>
+                    <div class="project-content">
+                        <h3>Clasificación de Aterrizajes de Cohetes Falcon 9</h3>
+                        <p>Desarrollo de modelos predictivos para clasificar el éxito o fracaso del aterrizaje de los cohetes Falcon 9 de SpaceX, basado en datos históricos y análisis geolocalizado.</p>
+                        <div class="project-tags">
+                            <span>Clasificación</span>
+                            <span>Análisis Espacial</span>
+                            <span>Visualización</span>
+                        </div>
+                        <a href="projects/spacex-landing.html" class="btn btn-secondary project-btn">Ver Detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/sql.jpg" alt="Proyecto SQL y Python" id="project4-placeholder">
+                    </div>
+                    <div class="project-content">
+                        <h3>Manipulación de Datos con SQL y Python</h3>
+                        <p>Gestión avanzada de datos de RRHH de Veterinaria mediante consultas SQL complejas, procedimientos almacenados y transacciones ACID para garantizar la integridad de los datos.</p>
+                        <div class="project-tags">
+                            <span>SQL</span>
+                            <span>Python</span>
+                            <span>Transacciones ACID</span>
+                        </div>
+                        <a href="projects/sql-python.html" class="btn btn-secondary project-btn">Ver Detalles</a>
+                    </div>
+                </div>
+          
+            <!-- Proyecto 5 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/frauddetection.png" alt="Proyecto Deteccion Fraude" id="project5-placeholder">
+                    </div>
+                    <div class="project-content">
+                        <h3>Detección de Fraude Asociados a TEF</h3>
+                        <p>Identificación de Fraude en Transferencias electrónicas en Chile.</p>
+                        <div class="project-tags">
+                            <span>Scikit-Learn</span>
+                            <span>Python</span>
+                            <span>Machine Learning</span>
+                            <span>Fraud_Detection</span>
+                        </div>
+                        <a href="projects/fraud-detection.html" class="btn btn-secondary project-btn">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Habilidades -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Habilidades</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-content">
+                <div class="skills-category">
+                    <h3>Lenguajes de Programación</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <div class="skill-info">
+                                <h4>Python</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <div class="skill-info">
+                                <h4>SQL</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Herramientas y Frameworks</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                            <div class="skill-info">
+                                <h4>Scikit-learn</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="skill-info">
+                                <h4>Pandas</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="skill-info">
+                                <h4>Matplotlib/Seaborn</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                            <div class="skill-info">
+                                <h4>TensorFlow/Keras</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Áreas de Especialización</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                            <div class="skill-info">
+                                <h4>Machine Learning</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
+                            <div class="skill-info">
+                                <h4>Análisis Estadístico</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-search"></i></div>
+                            <div class="skill-info">
+                                <h4>Análisis Exploratorio</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
+                            <div class="skill-info">
+                                <h4>Feature Engineering</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contacto</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>¡Hablemos!</h3>
+                    <p>Estoy interesado en oportunidades de colaboración en proyectos de Data Science. Si tienes alguna pregunta o propuesta, no dudes en contactarme.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-user"></i>
+                            <span>Sebastián Riveros S.</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>sebastiansalas440@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Región de Coquimbo, Chile</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/sebastian-riveros-salas" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Sebastian-Riveros" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.kaggle.com/sebastinriverossalas" class="social-link" target="_blank"><i class="fab fa-kaggle"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="SR-Contact" action="https://formspree.io/f/mnndyoar" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#home">S<span>R</span></a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/sebastian-riveros-salas" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Sebastian-Riveros" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.kaggle.com/sebastinriverossalas" class="social-link" target="_blank"><i class="fab fa-kaggle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sebastián Riveros Portfolio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact-form.js"></script>
+</body>
+</html>
