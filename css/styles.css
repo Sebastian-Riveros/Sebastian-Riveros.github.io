@@ -1,13 +1,13 @@
 /* Variables globales */
 :root {
-    --primary-color: #4a6cf7;
-    --secondary-color: #2c3e50;
-    --accent-color: #00c9a7;
-    --dark-color: #1a1a2e;
-    --light-color: #f8f9fa;
-    --gray-color: #6c757d;
-    --light-gray-color: #e9ecef;
-    --text-color: #333;
+    --primary-color: #1976D2;
+    --secondary-color: #424242;
+    --accent-color: #FFC107;
+    --dark-color: #212121;
+    --light-color: #FFFFFF;
+    --gray-color: #9E9E9E;
+    --light-gray-color: #f5f5f5;
+    --text-color: #424242;
     --white-color: #fff;
     --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
@@ -82,11 +82,11 @@ section {
 .btn {
     display: inline-block;
     padding: 12px 30px;
-    border-radius: 50px;
+    border-radius: 4px;
     font-weight: 500;
     text-align: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease-in-out;
     border: none;
     font-size: 1rem;
 }
@@ -97,7 +97,7 @@ section {
 }
 
 .btn-primary:hover {
-    background-color: #3a5bd9;
+    background-color: #1565C0;
     transform: translateY(-3px);
     box-shadow: var(--shadow);
 }
@@ -128,7 +128,7 @@ header {
 }
 
 .navbar {
-    padding: 15px 0;
+    padding: 20px 0;
 }
 
 .navbar .container {
@@ -320,13 +320,13 @@ header {
     background-color: var(--white-color);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .project-image {
@@ -369,7 +369,7 @@ header {
 }
 
 .project-tags span {
-    background-color: rgba(74, 108, 247, 0.1);
+    background-color: rgba(25, 118, 210, 0.1);
     color: var(--primary-color);
     padding: 5px 15px;
     border-radius: 50px;
@@ -423,7 +423,7 @@ header {
 .skill-icon {
     width: 50px;
     height: 50px;
-    background-color: rgba(74, 108, 247, 0.1);
+    background-color: rgba(25, 118, 210, 0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
