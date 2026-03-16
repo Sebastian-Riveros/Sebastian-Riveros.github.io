@@ -368,4 +368,236 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+}
+
+.project-tags span {
+  background-color: rgba(74, 108, 247, 0.1);
+  color: var(--primary-color);
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Habilidades */
+.skills-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.skills-category h3 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  color: var(--secondary-color);
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  padding-left: 15px;
+}
+
+.skills-category h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.skills-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.skill-icon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(74, 108, 247, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.skill-info h4 {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.skill-bar {
+  height: 8px;
+  background-color: var(--light-gray-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-level {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+/* Contacto */
+.contact {
+  background-color: var(--light-gray-color);
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+.contact-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--secondary-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contact-info p {
+  color: var(--gray-color);
+  margin-bottom: 30px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  transform: translateY(-5px);
+  background-color: var(--secondary-color);
+}
+
+.contact-form {
+  background-color: var(--white-color);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--light-gray-color);
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  padding: 60px 0 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer-logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-logo span {
+  color: var(--primary-color);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+  .section-header h2 { font-size: 2rem; }
+  .hero-content h1 { font-size: 2.8rem; }
+  .about-content { grid-template-columns: 1fr; }
+  .contact-content { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 768px) {
+  section { padding: 60px 0; }
+  .nav-toggle { display: block; }
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--white-color);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+  .nav-menu.active { left: 0; }
+  .nav-menu li { margin: 15px 0; }
+}
+
+/* Blog Section */
+.blog {
+  padding: 80px 0;
+  background-color: var(--light-gray-color);
+}
+
+.blog h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.post {
+  background: var(--white-color);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
